@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -25,10 +25,26 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
-
         parent::boot($router);
-        // if (Auth::check()) return Redirect::to('/');
+
+        
+
+        /*
+        |--------------------------------------------------------------------------
+        | Guest Filter
+        |--------------------------------------------------------------------------
+        |
+        | The "guest" filter is the counterpart of the authentication filters as
+        | it simply checks that the current user is not logged in. A redirect
+        | response will be issued if they are, which you may freely change.
+        |
+        */
+
+        Route::filter('guest', function()
+        {
+            if (Auth::check()) return Redirect::to('/');
+        });
+
     }
 
     /**

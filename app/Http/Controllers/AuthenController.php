@@ -1,5 +1,6 @@
 <?php
 
+Use App\Models\User;
 use Illuminate\Support\Facades\Input;
 
 use Illuminate\Support\Facades\Auth;
